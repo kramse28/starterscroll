@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    background: #AB8f87;
+}
+
+main {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+
+    background-image: url("../images/DND7.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

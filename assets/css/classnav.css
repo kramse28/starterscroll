@@ -1,0 +1,82 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: min(100vw, calc(100vh * 473 / 842));
+    aspect-ratio: 473 / 842;
+    margin: 0;
+    min-height: 0;
+    background-size: contain;
+}
+
+.back-to-classes {
+    position: absolute;
+    left: 10.6%;
+    top: 11.3%;
+    width: 29.8%;
+    height: 9.7%;
+    display: block;
+    border-radius: 10px;
+    outline: none;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.back-to-classes span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.back-to-classes:focus-visible {
+    box-shadow: 0 0 0 3px #f6e3b4;
+}
+
+.page-prev,
+.page-next {
+    position: absolute;
+    top: 88.6%;
+    width: 30.7%;
+    height: 10.3%;
+    display: block;
+    border-radius: 10px;
+    outline: none;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.page-prev {
+    left: 18.6%;
+}
+
+.page-next {
+    left: 51.2%;
+}
+
+.page-prev span,
+.page-next span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.page-prev:focus-visible,
+.page-next:focus-visible {
+    box-shadow: 0 0 0 3px #f6e3b4;
+}
