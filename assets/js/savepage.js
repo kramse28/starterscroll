@@ -86,12 +86,12 @@
         if (!character) return;
 
         const activeCharacterId = character.id;
-        const main = document.getElementById("save-page-main");
+        const bgEl = document.getElementById("save-page-bg");
         const nameEl = document.getElementById("saved-character-name");
         const avatarEl = document.getElementById("saved-avatar-image");
 
-        if (main) {
-            main.style.backgroundImage = 'url("' + classPanelPath(character.classId || "barbarian") + '")';
+        if (bgEl) {
+            bgEl.src = classPanelPath(character.classId || "barbarian");
         }
         if (nameEl) {
             nameEl.value = character.name || "Untitled Hero";
