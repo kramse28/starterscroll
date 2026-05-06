@@ -30,12 +30,6 @@
         backdrop.decoding = "async";
         btn.appendChild(backdrop);
 
-        const nameLabel = document.createElement("span");
-        nameLabel.className = "saved-character-name";
-        nameLabel.textContent = character.name || "Untitled Hero";
-        nameLabel.setAttribute("aria-hidden", "true");
-        btn.appendChild(nameLabel);
-
         const avatar = document.createElement("img");
         avatar.className = "saved-character-avatar";
         avatar.alt = character.name || "Saved character avatar";

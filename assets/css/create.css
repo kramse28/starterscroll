@@ -1,10 +1,3 @@
-@font-face {
-    font-family: "Alagard";
-    src: url("../fonts/alagard.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     margin: 0;
     background: #AB8f87;
@@ -128,8 +121,6 @@ main.create {
     padding: 0;
     cursor: pointer;
     outline: none;
-    container-type: inline-size;
-    container-name: saved-card;
 }
 
 .saved-character-card:focus-visible {
@@ -150,37 +141,10 @@ main.create {
     z-index: 0;
 }
 
-.saved-character-name {
-    position: absolute;
-    left: 50%;
-    top: 16%;
-    transform: translateX(-50%);
-    width: 92%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0 2%;
-    box-sizing: border-box;
-    z-index: 2;
-    pointer-events: none;
-    font-family: "Alagard", "Courier New", monospace;
-    font-weight: 700;
-    font-size: clamp(11px, 7cqw, 20px);
-    line-height: 1.25;
-    letter-spacing: 0.035em;
-    text-align: center;
-    color: #3d2833;
-    text-shadow:
-        0 0 2px rgba(255, 255, 255, 0.9),
-        0 0 4px rgba(255, 255, 255, 0.5);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .saved-character-avatar {
     position: absolute;
     left: 50%;
-    top: 55%;
+    top: 49%;
     width: 118%;
     height: 126%;
     transform: translate(-50%, -50%);
@@ -192,4 +156,9 @@ main.create {
     filter:
         drop-shadow(0 0 1px rgba(255, 255, 255, 0.85))
         drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
+}
+
+/* createhub.html only — avatars sit a bit higher than create.html */
+main.create-hub-page .saved-character-avatar {
+    top: 45%;
 }
