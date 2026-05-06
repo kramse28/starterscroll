@@ -21,8 +21,11 @@ main.save-page {
     container-type: inline-size;
     container-name: save-page;
     background-repeat: no-repeat;
-    background-size: contain;
+    /* Match create hub scroll: fill frame 1:1 with assets/savedavatars/saved*.png (843×1825) */
+    background-size: 100% 100%;
     background-position: center;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 .saved-back,
