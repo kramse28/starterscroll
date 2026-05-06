@@ -144,9 +144,9 @@ main.create {
 .saved-character-avatar {
     position: absolute;
     left: 50%;
-    top: 49%;
-    width: 118%;
-    height: 126%;
+    top: 55%;
+    width: 128%;
+    height: 136%;
     transform: translate(-50%, -50%);
     object-fit: contain;
     image-rendering: pixelated;
@@ -156,9 +156,4 @@ main.create {
     filter:
         drop-shadow(0 0 1px rgba(255, 255, 255, 0.85))
         drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
-}
-
-/* createhub.html only — avatars sit a bit higher than create.html */
-main.create-hub-page .saved-character-avatar {
-    top: 45%;
 }
