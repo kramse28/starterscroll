@@ -1,3 +1,17 @@
+@font-face {
+    font-family: "Dos";
+    src: url("../fonts/dos.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Alagard";
+    src: url("../fonts/alagard.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     background: #AB8f87;
@@ -116,15 +130,79 @@ main.create {
 
 .saved-character-card {
     position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
     border: none;
     background: transparent;
+    container-type: inline-size;
+    container-name: saved-card;
+}
+
+.saved-character-open {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
     padding: 0;
+    border: none;
+    background: transparent;
     cursor: pointer;
+    display: block;
     outline: none;
 }
 
-.saved-character-card:focus-visible {
+.saved-character-open:focus-visible {
     box-shadow: 0 0 0 3px #f6e3b4;
+}
+
+.saved-character-delete {
+    position: absolute;
+    top: 11%;
+    right: 15%;
+    z-index: 5;
+    width: clamp(22px, 19cqw, 34px);
+    height: clamp(22px, 19cqw, 34px);
+    margin: 0;
+    padding: 0;
+    border: 2px solid #3d2833;
+    border-radius: 0;
+    background: #a53c3c;
+    color: #f6e3b4;
+    font-family: "Dos", monospace;
+    font-size: clamp(14px, 14cqw, 24px);
+    font-weight: normal;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        inset 2px 2px 0 #d67878,
+        inset -2px -2px 0 #7a2828;
+    image-rendering: crisp-edges;
+    outline: none;
+}
+
+.saved-character-delete:hover {
+    filter: brightness(1.12);
+}
+
+.saved-character-delete:active {
+    box-shadow:
+        inset -2px -2px 0 #d67878,
+        inset 2px 2px 0 #7a2828;
+}
+
+.saved-character-delete:focus-visible {
+    box-shadow:
+        inset 2px 2px 0 #d67878,
+        inset -2px -2px 0 #7a2828,
+        0 0 0 2px #f6e3b4;
 }
 
 .saved-character-backdrop {
@@ -156,4 +234,154 @@ main.create {
     filter:
         drop-shadow(0 0 1px rgba(255, 255, 255, 0.85))
         drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
+}
+
+/* Delete confirm dialog (create hub) — matches create visual scroll / option styling */
+.hub-delete-modal-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.hub-delete-modal-root.is-open {
+    display: flex;
+}
+
+.hub-delete-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(61, 40, 51, 0.55);
+    cursor: default;
+}
+
+.hub-delete-modal {
+    position: relative;
+    z-index: 1;
+    /* Wider panel so the body copy wraps in ~2 lines instead of 3 */
+    width: min(300px, calc(100vw - 32px), calc(100vh - 32px));
+    aspect-ratio: 4 / 3;
+    max-width: none;
+    padding: clamp(16px, 4vw, 24px);
+    border: 2px solid #3d2833;
+    border-radius: 0;
+    background: #e9c199;
+    box-shadow:
+        inset 2px 2px 0 #f3d7b3,
+        inset -2px -2px 0 #c68259,
+        4px 4px 0 rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+    image-rendering: crisp-edges;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(10px, 2.4vw, 14px);
+    min-height: 0;
+}
+
+.hub-delete-modal-title {
+    margin: 0;
+    flex-shrink: 0;
+    width: 100%;
+    font-family: "Alagard", "Courier New", monospace;
+    font-size: clamp(18px, 4.5vw, 26px);
+    font-weight: 700;
+    color: #4a2547;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.hub-delete-modal-message {
+    margin: 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    overflow-y: auto;
+    font-family: "Dos", monospace;
+    font-size: clamp(15px, 3.8vw, 20px);
+    font-weight: normal;
+    color: #3d2833;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.hub-delete-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.hub-delete-modal-btn {
+    min-height: 44px;
+    padding: 0 clamp(18px, 3.5vw, 24px);
+    border: 2px solid #7a4331;
+    border-radius: 0;
+    font-family: "Alagard", "Courier New", monospace;
+    font-size: clamp(15px, 3.8vw, 19px);
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    outline: none;
+}
+
+.hub-delete-modal-btn.is-cancel {
+    background: #e9c199;
+    color: #4a2547;
+    box-shadow:
+        inset -2px -2px 0 #c68259,
+        inset 2px 2px 0 #f3d7b3;
+}
+
+.hub-delete-modal-btn.is-cancel:hover {
+    filter: brightness(1.04);
+}
+
+.hub-delete-modal-btn.is-cancel:active {
+    box-shadow:
+        inset 2px 2px 0 #c68259,
+        inset -2px -2px 0 #f3d7b3;
+}
+
+.hub-delete-modal-btn.is-danger {
+    background: #a53c3c;
+    color: #f6e3b4;
+    border-color: #3d2833;
+    box-shadow:
+        inset 2px 2px 0 #d67878,
+        inset -2px -2px 0 #7a2828;
+}
+
+.hub-delete-modal-btn.is-danger:hover {
+    filter: brightness(1.08);
+}
+
+.hub-delete-modal-btn.is-danger:active {
+    box-shadow:
+        inset -2px -2px 0 #d67878,
+        inset 2px 2px 0 #7a2828;
+}
+
+.hub-delete-modal-btn:focus-visible {
+    box-shadow:
+        inset -2px -2px 0 #c68259,
+        inset 2px 2px 0 #f3d7b3,
+        0 0 0 2px #f6e3b4;
+}
+
+.hub-delete-modal-btn.is-danger:focus-visible {
+    box-shadow:
+        inset 2px 2px 0 #d67878,
+        inset -2px -2px 0 #7a2828,
+        0 0 0 2px #f6e3b4;
 }
