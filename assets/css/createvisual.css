@@ -592,11 +592,12 @@ main.create-visual {
     box-sizing: border-box;
 }
 
-/* Bottom “Next” scroll: large hitbox over the right parchment (classnav sizes are too tight). */
+/* Bottom “Next” scroll: large hitbox over the right parchment (classnav sizes are too tight).
+   Kept lower so it doesn’t overlap HSB sliders (esp. brightness) on the Base panel. */
 main.create-visual .page-next {
     left: 46%;
     width: 39%;
-    top: 84%;
-    height: 13.5%;
+    top: 89%;
+    height: 10%;
     z-index: 5;
 }
