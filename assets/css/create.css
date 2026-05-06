@@ -266,6 +266,7 @@ main.create {
     width: min(300px, calc(100vw - 32px), calc(100vh - 32px));
     aspect-ratio: 4 / 3;
     max-width: none;
+    overflow: hidden;
     padding: clamp(16px, 4vw, 24px);
     border: 2px solid #3d2833;
     border-radius: 0;
@@ -302,7 +303,9 @@ main.create {
     flex: 1 1 auto;
     min-height: 0;
     width: 100%;
-    overflow-y: auto;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: break-word;
     font-family: "Dos", monospace;
     font-size: clamp(15px, 3.8vw, 20px);
     font-weight: normal;

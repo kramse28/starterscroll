@@ -7,6 +7,7 @@
 
     var deleteModalPendingId = null;
     var escapeDismissBound = false;
+    var deleteModalResizeBound = false;
 
     function readSavedCharacters() {
         try {
@@ -120,6 +121,88 @@
                 closeDeleteModal();
             });
         }
+
+        if (!deleteModalResizeBound) {
+            deleteModalResizeBound = true;
+            window.addEventListener("resize", function () {
+                var el = document.getElementById("hub-delete-modal-root");
+                if (!el || !el.classList.contains("is-open")) {
+                    return;
+                }
+                scheduleFitDeleteModalText();
+            });
+        }
+    }
+
+    /**
+     * Scales title, body, and button type so nothing overflows the fixed 4:3 panel (no scrolling).
+     */
+    function fitDeleteModalText() {
+        var dialog = document.querySelector(".hub-delete-modal");
+        var title = document.getElementById("hub-delete-modal-title");
+        var message = document.getElementById("hub-delete-modal-message");
+        if (!dialog || !title || !message) {
+            return;
+        }
+
+        title.style.fontSize = "";
+        message.style.fontSize = "";
+        var btns = dialog.querySelectorAll(".hub-delete-modal-btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].style.fontSize = "";
+        }
+
+        void dialog.offsetHeight;
+
+        var title0 = parseFloat(window.getComputedStyle(title).fontSize);
+        var msg0 = parseFloat(window.getComputedStyle(message).fontSize);
+        var btn0 =
+            btns.length > 0
+                ? parseFloat(window.getComputedStyle(btns[0]).fontSize)
+                : 16;
+
+        function applyScale(scale) {
+            var s = Math.max(0.32, Math.min(1, scale));
+            title.style.fontSize = title0 * s + "px";
+            message.style.fontSize = msg0 * s + "px";
+            for (var j = 0; j < btns.length; j++) {
+                btns[j].style.fontSize = btn0 * s + "px";
+            }
+        }
+
+        function bodyOverflows() {
+            return message.scrollHeight > message.clientHeight + 1;
+        }
+
+        if (!bodyOverflows()) {
+            return;
+        }
+
+        var lo = 0.32;
+        var hi = 1;
+        var best = lo;
+        var iter;
+        for (iter = 0; iter < 36; iter++) {
+            var mid = (lo + hi) / 2;
+            applyScale(mid);
+            if (bodyOverflows()) {
+                hi = mid;
+            } else {
+                best = mid;
+                lo = mid;
+            }
+        }
+        applyScale(best);
+        for (iter = 0; iter < 24 && bodyOverflows(); iter++) {
+            best *= 0.96;
+            applyScale(best);
+        }
+    }
+
+    function scheduleFitDeleteModalText() {
+        requestAnimationFrame(function () {
+            requestAnimationFrame(fitDeleteModalText);
+        });
     }
 
     function openDeleteModal(character) {
@@ -133,6 +216,7 @@
         var root = document.getElementById("hub-delete-modal-root");
         root.classList.add("is-open");
         root.setAttribute("aria-hidden", "false");
+        scheduleFitDeleteModalText();
         document.getElementById("hub-delete-modal-cancel").focus();
     }
 
@@ -144,6 +228,22 @@
         root.classList.remove("is-open");
         root.setAttribute("aria-hidden", "true");
         deleteModalPendingId = null;
+
+        var dialog = document.querySelector(".hub-delete-modal");
+        var title = document.getElementById("hub-delete-modal-title");
+        var message = document.getElementById("hub-delete-modal-message");
+        if (title) {
+            title.style.fontSize = "";
+        }
+        if (message) {
+            message.style.fontSize = "";
+        }
+        if (dialog) {
+            var btns = dialog.querySelectorAll(".hub-delete-modal-btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].style.fontSize = "";
+            }
+        }
     }
 
     function confirmDeleteModal() {
