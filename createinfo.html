@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Create Info</title>
+        <link rel="stylesheet" href="assets/css/createinfo.css">
+        <link rel="stylesheet" href="assets/css/classnav.css">
+    </head>
+    <body>
+        <main class="create-info">
+            <div id="createinfo-class-overlay" class="createinfo-class-overlay" aria-hidden="true"></div>
+            <p id="class-selection-live" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
+
+            <a class="back-home-scroll" href="create.html" aria-label="Back to create hub"><span>Create Hub</span></a>
+            <a class="page-prev" href="createvisual.html" aria-label="Previous create page"><span>Previous</span></a>
+
+            <div class="createinfo-class-scroll-arrows">
+                <button type="button" class="createinfo-class-arrow createinfo-class-arrow-prev" aria-label="Previous class">
+                    <img src="assets/images/pointleft.png" alt="" width="48" height="48">
+                </button>
+                <button type="button" class="createinfo-class-arrow createinfo-class-arrow-next" aria-label="Next class">
+                    <img src="assets/images/pointright.png" alt="" width="48" height="48">
+                </button>
+            </div>
+
+            <div class="name-scroll-field">
+                <label class="visually-hidden" for="character-name">Character name</label>
+                <input
+                    type="text"
+                    id="character-name"
+                    name="character-name"
+                    maxlength="40"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="Characters Name"
+                    aria-label="Character name"
+                >
+            </div>
+
+            <button type="button" id="save-character-btn" class="save-character-btn" aria-label="Save character">
+                <span>Save Character</span>
+            </button>
+        </main>
+        <script src="assets/js/createinfo.js"></script>
+    </body>
+</html>

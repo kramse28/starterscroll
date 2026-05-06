@@ -1,0 +1,220 @@
+@font-face {
+    font-family: "Alagard";
+    src: url("../fonts/alagard.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    background: #AB8f87;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Match assets/images/createinfo.png (13492×29200 → 843∶1825). */
+main {
+    width: min(100vw, calc(100vh * 843 / 1825));
+    aspect-ratio: 843 / 1825;
+    margin: 0;
+    min-height: 0;
+    position: relative;
+
+    background-image: url("../images/createinfo.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Class info art from assets/createclass — sits above base parchment, below inputs & nav (z-index). */
+.createinfo-class-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.back-home-scroll {
+    position: absolute;
+    left: 10.5%;
+    top: 12.1%;
+    width: 29.8%;
+    height: 9.4%;
+    display: block;
+    border-radius: 10px;
+    outline: none;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.back-home-scroll span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.back-home-scroll:focus-visible {
+    box-shadow: 0 0 0 3px #f6e3b4;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* “Class” parchment row on createinfo.png — arrows flanking the scroll text */
+.createinfo-class-scroll-arrows {
+    position: absolute;
+    left: 10%;
+    top: 32.85%;
+    width: 80%;
+    height: 7%;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 1%;
+    pointer-events: none;
+}
+
+.createinfo-class-arrow {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(48px, 13vw, 72px);
+    height: clamp(48px, 13vw, 72px);
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    line-height: 0;
+    outline: none;
+}
+
+.createinfo-class-arrow img {
+    width: clamp(36px, 9.5vw, 56px);
+    height: auto;
+    max-height: clamp(48px, 13vw, 72px);
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+}
+
+.createinfo-class-arrow:hover img {
+    filter: brightness(1.08);
+}
+
+.createinfo-class-arrow:focus-visible {
+    outline: 2px solid #f6e3b4;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Long “Name” scroll — interactive field aligned to parchment in createinfo.png */
+.name-scroll-field {
+    position: absolute;
+    left: 7.5%;
+    top: 23.55%;
+    width: 85%;
+    height: 8.5%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 9%;
+    pointer-events: auto;
+    font-family: "Alagard", "Courier New", monospace;
+}
+
+.name-scroll-field input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 4px 4px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #3d2833;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: "Alagard", "Courier New", monospace;
+    font-size: clamp(22px, 4.2vw, 40px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    letter-spacing: 0.04em;
+    outline: none;
+    cursor: text;
+    line-height: 1.2;
+    min-height: 42px;
+}
+
+.name-scroll-field input[type="text"]::placeholder {
+    color: rgba(61, 40, 51, 0.42);
+    opacity: 1;
+}
+
+.name-scroll-field input[type="text"]:hover {
+    background: transparent;
+}
+
+.name-scroll-field input[type="text"]:focus,
+.name-scroll-field input[type="text"]:focus-visible {
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+}
+
+.save-character-btn {
+    position: absolute;
+    left: 19%;
+    top: 78.2%;
+    width: 62%;
+    height: 8.3%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 6;
+    border-radius: 10px;
+    outline: none;
+}
+
+.save-character-btn span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.save-character-btn:focus-visible {
+    box-shadow: 0 0 0 3px #f6e3b4;
+}

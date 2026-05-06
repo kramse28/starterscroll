@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Create Visual</title>
+        <link rel="stylesheet" href="assets/css/classnav.css">
+        <link rel="stylesheet" href="assets/css/createvisual.css">
+    </head>
+    <body>
+        <main class="create-visual">
+            <a class="back-home-scroll" href="create.html" aria-label="Back to create hub"><span>Create Hub</span></a>
+            <a class="page-next" href="createinfo.html" aria-label="Next create page"><span>Next</span></a>
+
+            <div class="visual-category-column">
+                <button type="button" class="category-scroll-btn base" data-target="base-panel"><span>Base</span></button>
+                <button type="button" class="category-scroll-btn hair" data-target="hair-panel"><span>Hair</span></button>
+                <button type="button" class="category-scroll-btn tops" data-target="tops-panel"><span>Tops</span></button>
+                <button type="button" class="category-scroll-btn bottoms" data-target="bottoms-panel"><span>Bottoms</span></button>
+            </div>
+
+            <div class="visual-avatar-frame" aria-hidden="true">
+                <div class="avatar-preview">
+                    <div class="avatar-layers">
+                        <img id="avatar-layer-base" class="avatar-layer avatar-layer-base" alt="">
+                        <img id="avatar-layer-pants" class="avatar-layer avatar-layer-pants" alt="">
+                        <img id="avatar-layer-shirt" class="avatar-layer avatar-layer-shirt" alt="">
+                        <img id="avatar-layer-hair" class="avatar-layer avatar-layer-hair" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-panel-frame">
+            <div id="base-panel" class="category-panel customization-panel">
+                <div class="option-group">
+                    <h3 class="option-title">Eyes</h3>
+                    <div id="eye-options" class="scroll-options scroll-options-eyes">
+                        <button type="button" class="scroll-option" data-base="1">1</button>
+                        <button type="button" class="scroll-option" data-base="2">2</button>
+                        <button type="button" class="scroll-option" data-base="3">3</button>
+                        <button type="button" class="scroll-option" data-base="4">4</button>
+                        <button type="button" class="scroll-option" data-base="5">5</button>
+                        <button type="button" class="scroll-option" data-base="6">6</button>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3 class="option-title">Ears</h3>
+                    <div id="ear-options" class="scroll-options">
+                        <button type="button" class="scroll-option scroll-option-wide" data-ear="1">1</button>
+                        <button type="button" class="scroll-option scroll-option-wide" data-ear="2">2</button>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3 class="option-title">Skin</h3>
+                    <div class="hsb-picker">
+                        <div class="hsb-sliders">
+                            <div class="hsb-row">
+                                <label for="skin-hue">Hue</label>
+                                <input id="skin-hue" type="range" min="0" max="360" step="1" value="28">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="skin-sat">Sat</label>
+                                <input id="skin-sat" type="range" min="0" max="100" step="1" value="42">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="skin-bri">Bri</label>
+                                <input id="skin-bri" type="range" min="0" max="100" step="1" value="52">
+                            </div>
+                        </div>
+                        <div id="skin-swatch" class="skin-swatch" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="hair-panel" class="category-panel customization-panel is-collapsed">
+                <div class="option-group">
+                    <h3 class="option-title">Style</h3>
+                    <div id="hair-style-options" class="scroll-options scroll-options-hair">
+                        <button type="button" class="scroll-option" data-hair="">1</button>
+                        <button type="button" class="scroll-option" data-hair="2">2</button>
+                        <button type="button" class="scroll-option" data-hair="3">3</button>
+                        <button type="button" class="scroll-option" data-hair="4">4</button>
+                        <button type="button" class="scroll-option" data-hair="5">5</button>
+                        <button type="button" class="scroll-option" data-hair="6">6</button>
+                        <button type="button" class="scroll-option" data-hair="7">7</button>
+                        <button type="button" class="scroll-option" data-hair="8">8</button>
+                        <button type="button" class="scroll-option" data-hair="9">9</button>
+                        <button type="button" class="scroll-option" data-hair="10">10</button>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <h3 class="option-title">Hair color</h3>
+                    <div class="hsb-picker">
+                        <div class="hsb-sliders">
+                            <div class="hsb-row">
+                                <label for="hair-hue">Hue</label>
+                                <input id="hair-hue" type="range" min="0" max="360" step="1" value="32">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="hair-sat">Sat</label>
+                                <input id="hair-sat" type="range" min="0" max="100" step="1" value="55">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="hair-bri">Bri</label>
+                                <input id="hair-bri" type="range" min="0" max="100" step="1" value="38">
+                            </div>
+                        </div>
+                        <div id="hair-swatch" class="skin-swatch" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tops-panel" class="category-panel customization-panel is-collapsed">
+                <div class="option-group">
+                    <h3 class="option-title">Shirt</h3>
+                    <div class="stack-picker">
+                        <div class="stack-nav-with-preview">
+                            <button type="button" id="shirt-prev" class="cycle-nav-btn" aria-label="Previous shirt">
+                                <img src="assets/images/pointleft.png" alt="" width="32" height="32">
+                            </button>
+                            <div class="panel-item-preview-wrap">
+                                <img id="shirt-panel-preview" class="panel-item-preview" alt="">
+                            </div>
+                            <button type="button" id="shirt-next" class="cycle-nav-btn" aria-label="Next shirt">
+                                <img src="assets/images/pointright.png" alt="" width="32" height="32">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hsb-picker">
+                        <div class="hsb-sliders">
+                            <div class="hsb-row">
+                                <label for="shirt-hue">Hue</label>
+                                <input id="shirt-hue" type="range" min="0" max="360" step="1" value="42">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="shirt-sat">Sat</label>
+                                <input id="shirt-sat" type="range" min="0" max="100" step="1" value="14">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="shirt-bri">Bri</label>
+                                <input id="shirt-bri" type="range" min="0" max="100" step="1" value="92">
+                            </div>
+                        </div>
+                        <div id="shirt-swatch" class="skin-swatch" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bottoms-panel" class="category-panel customization-panel is-collapsed">
+                <div class="option-group">
+                    <h3 class="option-title">Pants</h3>
+                    <div class="stack-picker">
+                        <div class="stack-nav-with-preview">
+                            <button type="button" id="pant-prev" class="cycle-nav-btn" aria-label="Previous pants">
+                                <img src="assets/images/pointleft.png" alt="" width="32" height="32">
+                            </button>
+                            <div class="panel-item-preview-wrap">
+                                <img id="pant-panel-preview" class="panel-item-preview" alt="">
+                            </div>
+                            <button type="button" id="pant-next" class="cycle-nav-btn" aria-label="Next pants">
+                                <img src="assets/images/pointright.png" alt="" width="32" height="32">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hsb-picker">
+                        <div class="hsb-sliders">
+                            <div class="hsb-row">
+                                <label for="pant-hue">Hue</label>
+                                <input id="pant-hue" type="range" min="0" max="360" step="1" value="210">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="pant-sat">Sat</label>
+                                <input id="pant-sat" type="range" min="0" max="100" step="1" value="50">
+                            </div>
+                            <div class="hsb-row">
+                                <label for="pant-bri">Bri</label>
+                                <input id="pant-bri" type="range" min="0" max="100" step="1" value="42">
+                            </div>
+                        </div>
+                        <div id="pant-swatch" class="skin-swatch" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </main>
+        <script src="assets/js/createvisual.js"></script>
+    </body>
+</html>

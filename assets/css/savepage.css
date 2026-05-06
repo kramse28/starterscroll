@@ -1,0 +1,110 @@
+@font-face {
+    font-family: "Alagard";
+    src: url("../fonts/alagard.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    background: #ab8f87;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main.save-page {
+    width: min(100vw, calc(100vh * 843 / 1825));
+    aspect-ratio: 843 / 1825;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.saved-back,
+.saved-create {
+    position: absolute;
+    top: 12.1%;
+    height: 9.4%;
+    border-radius: 10px;
+    z-index: 4;
+    outline: none;
+}
+
+.saved-back {
+    left: 10.5%;
+    width: 29.8%;
+}
+
+.saved-create {
+    left: 52%;
+    width: 37.8%;
+}
+
+.saved-back span,
+.saved-create span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.saved-back:focus-visible,
+.saved-create:focus-visible {
+    box-shadow: 0 0 0 3px #f6e3b4;
+}
+
+.saved-name-box {
+    position: absolute;
+    left: 25.5%;
+    top: 26%;
+    width: 52%;
+    height: 7.6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+}
+
+#saved-character-name {
+    margin: 0;
+    font-family: "Alagard", "Courier New", monospace;
+    color: #3d2833;
+    font-size: clamp(22px, 4.2vw, 40px);
+    text-align: center;
+    width: 100%;
+    padding: 0 2%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saved-avatar-wrap {
+    position: absolute;
+    left: 52%;
+    top: 24%;
+    width: 58%;
+    height: 52%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.saved-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter:
+        drop-shadow(0 0 1px rgba(255, 255, 255, 0.85))
+        drop-shadow(0 0 2px rgba(255, 255, 255, 0.45));
+}

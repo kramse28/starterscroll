@@ -7,9 +7,10 @@ body {
     align-items: center;
 }
 
+/* Match assets/images/classes.png (same proportions as starterscroll). */
 main {
-    width: min(100vw, calc(100vh * 473 / 842));
-    aspect-ratio: 473 / 842;
+    width: min(100vw, calc(100vh * 843 / 1825));
+    aspect-ratio: 843 / 1825;
     margin: 0;
     min-height: 0;
     position: relative;
