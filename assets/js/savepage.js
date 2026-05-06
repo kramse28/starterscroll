@@ -41,12 +41,11 @@
         if (idx === -1) return;
 
         const trimmed = (rawName || "").trim();
-        const displayName = trimmed || "Untitled Hero";
-        list[idx].name = displayName;
+        list[idx].name = trimmed;
         writeSavedCharacters(list);
 
         if (avatarEl) {
-            avatarEl.alt = displayName + " avatar";
+            avatarEl.alt = (trimmed || "Saved character") + " avatar";
         }
     }
 
@@ -94,7 +93,7 @@
             bgEl.src = classPanelPath(character.classId || "barbarian");
         }
         if (nameEl) {
-            nameEl.value = character.name || "Untitled Hero";
+            nameEl.value = character.name || "";
         }
         if (avatarEl) {
             avatarEl.src = character.avatarImage || FALLBACK_AVATAR;
@@ -107,11 +106,7 @@
 
         function flushNamePersist() {
             if (!nameEl || !activeCharacterId) return;
-            let v = (nameEl.value || "").trim();
-            if (!v) {
-                v = "Untitled Hero";
-                nameEl.value = v;
-            }
+            const v = (nameEl.value || "").trim();
             persistCharacterName(activeCharacterId, v, avatarEl);
         }
 
