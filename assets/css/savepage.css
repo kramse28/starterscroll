@@ -18,6 +18,8 @@ main.save-page {
     width: min(100vw, calc(100vh * 843 / 1825));
     aspect-ratio: 843 / 1825;
     position: relative;
+    container-type: inline-size;
+    container-name: save-page;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -76,9 +78,13 @@ main.save-page {
     margin: 0;
     font-family: "Alagard", "Courier New", monospace;
     color: #3d2833;
-    font-size: clamp(22px, 4.2vw, 40px);
+    font-weight: 700;
+    font-size: clamp(14px, 2.2vw, 32px);
+    font-size: clamp(14px, 4.8cqw, 32px);
     text-align: center;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 0 2%;
     white-space: nowrap;
     overflow: hidden;
