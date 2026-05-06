@@ -8,21 +8,45 @@
     /**
      * Shrinks font-size so the name fits the parchment name box (like createinfo fit).
      */
-    function fitSavedNameFont(el) {
-        if (!el) return;
-        el.style.fontSize = "";
-        const text = (el.textContent || "").trim();
-        if (!text) return;
+    function fitSavedNameFont(input) {
+        if (!input) return;
+        input.style.fontSize = "";
+        if (!input.value) return;
 
-        const computedMax = parseFloat(window.getComputedStyle(el).fontSize);
+        const computedMax = parseFloat(window.getComputedStyle(input).fontSize);
         let size = computedMax;
-        el.style.fontSize = size + "px";
+        input.style.fontSize = size + "px";
 
         let guard = 0;
-        while (el.scrollWidth > el.clientWidth && size > MIN_NAME_FONT_PX && guard < 400) {
+        while (input.scrollWidth > input.clientWidth && size > MIN_NAME_FONT_PX && guard < 400) {
             size -= 0.45;
-            el.style.fontSize = size + "px";
+            input.style.fontSize = size + "px";
             guard += 1;
+        }
+    }
+
+    function writeSavedCharacters(list) {
+        try {
+            localStorage.setItem(STORAGE_SAVED_CHARACTERS_KEY, JSON.stringify(list));
+        } catch (e) {
+            /* private mode / quota */
+        }
+    }
+
+    function persistCharacterName(characterId, rawName, avatarEl) {
+        const list = readSavedCharacters();
+        const idx = list.findIndex(function (entry) {
+            return String(entry.id) === String(characterId);
+        });
+        if (idx === -1) return;
+
+        const trimmed = (rawName || "").trim();
+        const displayName = trimmed || "Untitled Hero";
+        list[idx].name = displayName;
+        writeSavedCharacters(list);
+
+        if (avatarEl) {
+            avatarEl.alt = displayName + " avatar";
         }
     }
 
@@ -61,6 +85,7 @@
 
         if (!character) return;
 
+        const activeCharacterId = character.id;
         const main = document.getElementById("save-page-main");
         const nameEl = document.getElementById("saved-character-name");
         const avatarEl = document.getElementById("saved-avatar-image");
@@ -69,7 +94,7 @@
             main.style.backgroundImage = 'url("' + classPanelPath(character.classId || "barbarian") + '")';
         }
         if (nameEl) {
-            nameEl.textContent = character.name || "Untitled Hero";
+            nameEl.value = character.name || "Untitled Hero";
         }
         if (avatarEl) {
             avatarEl.src = character.avatarImage || FALLBACK_AVATAR;
@@ -80,13 +105,40 @@
             fitSavedNameFont(nameEl);
         }
 
+        function flushNamePersist() {
+            if (!nameEl || !activeCharacterId) return;
+            let v = (nameEl.value || "").trim();
+            if (!v) {
+                v = "Untitled Hero";
+                nameEl.value = v;
+            }
+            persistCharacterName(activeCharacterId, v, avatarEl);
+        }
+
         if (nameEl) {
+            let persistTimer = null;
             applyNameFit();
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(applyNameFit);
             }
             window.addEventListener("resize", function () {
                 requestAnimationFrame(applyNameFit);
+            });
+
+            nameEl.addEventListener("input", function () {
+                applyNameFit();
+                clearTimeout(persistTimer);
+                persistTimer = setTimeout(flushNamePersist, 350);
+            });
+            nameEl.addEventListener("blur", function () {
+                clearTimeout(persistTimer);
+                flushNamePersist();
+                applyNameFit();
+            });
+
+            window.addEventListener("pagehide", function () {
+                clearTimeout(persistTimer);
+                flushNamePersist();
             });
         }
     }

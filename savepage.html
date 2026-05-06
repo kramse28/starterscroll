@@ -12,7 +12,17 @@
             <a class="saved-create" href="createvisual.html" aria-label="Create a new character"><span>Create</span></a>
 
             <div class="saved-name-box">
-                <p id="saved-character-name">Untitled Hero</p>
+                <label class="visually-hidden" for="saved-character-name">Character name</label>
+                <input
+                    type="text"
+                    id="saved-character-name"
+                    name="saved-character-name"
+                    maxlength="40"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="Character name"
+                    aria-label="Character name"
+                >
             </div>
 
             <div class="saved-avatar-wrap" aria-hidden="true">
