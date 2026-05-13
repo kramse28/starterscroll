@@ -245,6 +245,7 @@
     }
 
     function saveCurrentCharacter(input) {
+        const destination = "createhub.html";
         const record = buildSavedCharacterRecord(input);
         try {
             const raw = localStorage.getItem(STORAGE_SAVED_CHARACTERS_KEY);
@@ -253,10 +254,18 @@
             savedList.unshift(record);
             localStorage.setItem(STORAGE_SAVED_CHARACTERS_KEY, JSON.stringify(savedList));
             resetCreationDraft();
-            window.location.href = "createhub.html";
+            if (typeof window.arcadeNavigate === "function") {
+                window.arcadeNavigate(destination);
+                return;
+            }
+            window.location.href = destination;
         } catch (e) {
             resetCreationDraft();
-            window.location.href = "createhub.html";
+            if (typeof window.arcadeNavigate === "function") {
+                window.arcadeNavigate(destination);
+                return;
+            }
+            window.location.href = destination;
         }
     }
 

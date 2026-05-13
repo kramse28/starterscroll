@@ -1,0 +1,64 @@
+.arcade-transition {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.arcade-transition__base,
+.arcade-transition__pixels {
+    position: absolute;
+    inset: 0;
+}
+
+.arcade-transition__base {
+    background: #ab8f87;
+    opacity: 0;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.arcade-transition__pixels {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.arcade-transition__pixel {
+    position: absolute;
+    background: #ab8f87;
+    opacity: 0;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    animation: arcade-pixel-dissolve 105ms linear forwards;
+    animation-delay: var(--delay, 0ms);
+}
+
+.arcade-transition.is-active {
+    animation: arcade-overlay-in 200ms linear forwards;
+}
+
+.arcade-transition.is-active .arcade-transition__base {
+    animation: arcade-base-in 200ms linear forwards;
+}
+
+@keyframes arcade-overlay-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes arcade-base-in { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes arcade-pixel-dissolve {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

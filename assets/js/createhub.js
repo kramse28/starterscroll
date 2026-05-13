@@ -291,7 +291,12 @@
         openBtn.appendChild(avatar);
 
         openBtn.addEventListener("click", function () {
-            window.location.href = "savepage.html?characterId=" + encodeURIComponent(character.id || "");
+            var targetHref = "savepage.html?characterId=" + encodeURIComponent(character.id || "");
+            if (typeof window.arcadeNavigate === "function") {
+                window.arcadeNavigate(targetHref);
+                return;
+            }
+            window.location.href = targetHref;
         });
 
         const delBtn = document.createElement("button");
